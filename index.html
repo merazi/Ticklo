@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A brief description of your website">
+    <title>Ticklo</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Ticklo</h1>
+    </header>
+    <main>
+        <div id="pomodoro">
+            <h2 id="pomodoro_status">Status</h2>
+            <h1 id="pomodoro_clock">00:00</h1>
+            <button id="pomodoro_start_button">Start</button>
+            <button id="pomodoro_pause_button">Pause</button>
+        </div>
+    </main>
+
+    <div id="settingsDialog" style="display: none;">
+        <h2>Settings</h2>
+        <form id="settingsForm">
+            <label for="workDuration">Work Duration (minutes):</label>
+            <input type="number" id="workDuration" name="workDuration" min="1" value="25" required>
+            <br>
+            <label for="breakDuration">Break Duration (minutes):</label>
+            <input type="number" id="breakDuration" name="breakDuration" min="1" value="5" required>
+            <br>
+            <button type="submit">Save</button>
+            <button type="button" id="closeSettingsButton">Cancel</button>
+        </form>
+    </div>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+
+</html>

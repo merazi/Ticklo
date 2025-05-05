@@ -1,0 +1,8 @@
+#pomodoro_clock {
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 10rem;
+}
+
+#pomodoro_clock {
+    user-select: none;
+}
