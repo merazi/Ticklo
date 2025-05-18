@@ -1,8 +1,8 @@
-# Ticklo
-
 <p align="center">
   <img src="img/logo_light.png" alt="Ticklo Logo" width="120" />
 </p>
+
+# Ticklo
 
 Ticklo is a minimalist web-based Pomodoro application designed to help you stay focused and productive. With a clean interface and calming soundscapes, Ticklo makes time management a breeze.
 
