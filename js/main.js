@@ -4,6 +4,9 @@ let isWorkSession = true; // tracks if it's work or break
 const WORK_DURATION_MINUTES = 0.2; // Work session duration in minutes
 const BREAK_DURATION_MINUTES = 0.1; // Break session duration in minutes
 
+const WORK_DONE_SOUND = new Audio('sounds/work-end.ogg');
+const BREAK_DONE_SOUND = new Audio('sounds/break-end.ogg');
+
 const WORK_DURATION = WORK_DURATION_MINUTES * 60; // Work session duration in seconds
 const BREAK_DURATION = BREAK_DURATION_MINUTES * 60; // Break session duration in seconds
 
@@ -24,7 +27,7 @@ function startTimer() {
     pomodoro_status = isWorkSession ? 'Working' : 'Break time';
     updateDisplay();
 
-    timer = setInterval(() => {
+    timer = setInterval(async () => {
         if (timeLeft > 0) {
             timeLeft--;
             updateDisplay();
@@ -33,21 +36,22 @@ function startTimer() {
             timer = null;
 
             if (isWorkSession) {
-                alert('Work session complete! Time for a break.');
+                WORK_DONE_SOUND.play();
+                await showNotification('✅ Work session complete! Let\'s take a break!');
                 isWorkSession = false;
                 pomodoro_status = 'Break time';
                 timeLeft = BREAK_DURATION;
             } else {
-                alert('Break complete! Back to work.');
+                BREAK_DONE_SOUND.play();
+                await showNotification('🕒 Break complete! Let\'s get back to work!');
                 isWorkSession = true;
                 pomodoro_status = 'Working';
                 timeLeft = WORK_DURATION;
             }
 
             document.getElementById('pomodoro_status').textContent = pomodoro_status;
-
             updateDisplay();
-            startTimer(); // Automatically start the next session
+            startTimer(); // Continue after user confirms
         }
     }, 1000);
 }
@@ -65,6 +69,25 @@ function resetTimer() {
 
     const status = isWorkSession ? 'Ready to Work' : 'Ready to Break';
     document.getElementById('pomodoro_status').textContent = status;
+}
+
+function showNotification(message) {
+    return new Promise((resolve) => {
+        const backdrop = document.getElementById('notification-backdrop');
+        const messageEl = document.getElementById('notification-message');
+        const actionBtn = document.getElementById('notification-action');
+
+        messageEl.textContent = message;
+        backdrop.classList.add('show');
+
+        const handleClick = () => {
+            backdrop.classList.remove('show');
+            actionBtn.removeEventListener('click', handleClick);
+            resolve(); // Let timer continue
+        };
+
+        actionBtn.addEventListener('click', handleClick);
+    });
 }
 
 // Initial display

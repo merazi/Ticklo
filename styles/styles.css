@@ -6,3 +6,52 @@
 #pomodoro_clock {
     user-select: none;
 }
+
+#notification-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* semi-transparent */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+#notification-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#notification {
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    font-weight: bold;
+    max-width: 90%;
+    text-align: center;
+}
+
+#notification button {
+    background-color: #5e81ac;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    margin-top: 1rem;
+}
+
+#notification button:hover {
+    background-color: #81a1c1;
+}
