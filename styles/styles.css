@@ -1,8 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow: hidden;
+}
+
+#pomodoro_welcome {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1.5rem 0 1rem 0;
+    background: transparent;
+    z-index: 20;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    pointer-events: none;
+}
+
+#pomodoro_status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
 #pomodoro_clock {
     font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    font-size: 10rem;
+    font-size: clamp(2rem, 20vw, 10rem);
+    text-align: center;
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#pomodoro_buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    z-index: 10;
+    gap: 1rem;
 }
 
 #pomodoro_clock {
