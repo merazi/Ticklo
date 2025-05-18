@@ -6,6 +6,9 @@ Ticklo is a minimalist web-based Pomodoro application designed to help you stay 
 
 - **Pomodoro Timer**: Stay on track with the classic Pomodoro technique.
 - **Minimalist Design**: A distraction-free interface to keep you focused.
+
+## TO-DO
+
 - **Calm Sounds**: Listen to soothing background sounds while you work.
 - **Customizable Sessions**: Adjust your work and break durations to fit your needs.
 
