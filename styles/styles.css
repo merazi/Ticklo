@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+
 
 body {
     min-height: 100vh;
@@ -9,6 +11,30 @@ body {
     margin: 0;
     overflow: hidden;
 }
+
+#custom-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #a8e6a1;
+
+    /* green background for success */
+    color: black;
+    padding: 12px 24px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+#custom-alert.show {
+    opacity: 1;
+    top: 40px;
+    /* small animation downward */
+}
+
 
 #pomodoro_header {
     position: fixed;
@@ -44,7 +70,7 @@ body {
 }
 
 #pomodoro_clock {
-    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-family: "Doto", sans-serif;
     font-size: clamp(2rem, 20vw, 10rem);
     text-align: center;
     flex: 1 0 auto;

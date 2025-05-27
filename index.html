@@ -4,24 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A brief description of your website">
+    <meta name="description" content="A simple Pomodoro timer app to boost your productivity.">
     <title>Ticklo - Simple Pomodoro Timer & Productivity App</title>
     <meta name="description"
         content="Ticklo is a simple and effective Pomodoro timer app to boost your productivity. Manage your tasks, stay focused, and achieve more with Ticklo.">
     <meta name="keywords" content="Pomodoro, Timer, Productivity, Task Management, Focus, Ticklo">
-    <meta name="author" content="Your Name">
-    <link rel="canonical" href="https://yourdomain.com/">
+    <meta name="author" content="Merazi">
     <meta property="og:title" content="Ticklo - Simple Pomodoro Timer & Productivity App">
     <meta property="og:description"
         content="Boost your productivity with Ticklo, a simple Pomodoro timer and task management app.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/">
-    <meta property="og:image" content="https://yourdomain.com/assets/og-image.png">
-    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ticklo - Simple Pomodoro Timer & Productivity App">
     <meta name="twitter:description"
         content="Boost your productivity with Ticklo, a simple Pomodoro timer and task management app.">
-    <meta name="twitter:image" content="https://yourdomain.com/assets/og-image.png">
+    <meta name="twitter:image" content="https://merazi.github.io/Ticklo/img/logo_light.png">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
     <link rel="icon" type="image/png" href="img/logo_light.png">
@@ -32,6 +28,7 @@
         <h1 id="pomodoro_welcome">Welcome to Ticklo</h1>
     </header>
     <main>
+
         <div id="pomodoro">
             <h2 id="pomodoro_status">Status</h2>
             <h1 id="pomodoro_clock">00:00</h1>
@@ -49,6 +46,19 @@
             <button id="notification-action">OK</button>
         </div>
     </div>
+
+    <div id="custom-alert" class="hidden">Saved successfully!</div>
+
+    <section id="pomodoro_settings">
+        <h3>Timer Settings</h3>
+        <label for="work_duration_input">Work Duration (minutes):</label>
+        <input type="number" id="work_duration_input" min="1" value="25">
+
+        <label for="break_duration_input">Break Duration (minutes):</label>
+        <input type="number" id="break_duration_input" min="1" value="5">
+
+        <button id="apply_settings_button">Apply Settings</button>
+    </section>
 
     <script src="js/main.js"></script>
 

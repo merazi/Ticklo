@@ -1,16 +1,20 @@
 let timer; // reference to the interval
 let isWorkSession = true; // tracks if it's work or break
 
-const WORK_DURATION_MINUTES = 0.2; // Work session duration in minutes
-const BREAK_DURATION_MINUTES = 0.1; // Break session duration in minutes
+let workDurationMinutes = 25;
+let breakDurationMinutes = 5;
 
-const WORK_DONE_SOUND = new Audio('sounds/work-end.ogg');
-const BREAK_DONE_SOUND = new Audio('sounds/break-end.ogg');
+const NOTIFICATION_SOUND = new Audio('sounds/Ticklo-Notification.ogg');
 
-const WORK_DURATION = WORK_DURATION_MINUTES * 60; // Work session duration in seconds
-const BREAK_DURATION = BREAK_DURATION_MINUTES * 60; // Break session duration in seconds
+function getWorkDuration() {
+    return workDurationMinutes * 60;
+}
 
-let timeLeft = WORK_DURATION; // Initialize time left to work session duration
+function getBreakDuration() {
+    return breakDurationMinutes * 60;
+}
+
+let timeLeft = getWorkDuration();
 
 let pomodoro_status = 'Ready to Work'; // Initial status message
 
@@ -19,6 +23,11 @@ function updateDisplay() {
     const seconds = (timeLeft % 60).toString().padStart(2, '0');
     document.getElementById('pomodoro_clock').textContent = `${minutes}:${seconds}`;
     document.getElementById('pomodoro_status').textContent = pomodoro_status;
+}
+
+function playNotificationSound() {
+    const sound = NOTIFICATION_SOUND.cloneNode(); // Create a fresh copy
+    sound.play().catch((e) => console.warn("Sound playback failed:", e));
 }
 
 function startTimer() {
@@ -36,18 +45,19 @@ function startTimer() {
             timer = null;
 
             if (isWorkSession) {
-                WORK_DONE_SOUND.play();
+                playNotificationSound(); // Play sound when session ends
                 await showNotification('✅ Work session complete! Let\'s take a break!');
                 isWorkSession = false;
                 pomodoro_status = 'Break time';
-                timeLeft = BREAK_DURATION;
             } else {
-                BREAK_DONE_SOUND.play();
+                playNotificationSound(); // Play sound when session ends
                 await showNotification('🕒 Break complete! Let\'s get back to work!');
                 isWorkSession = true;
                 pomodoro_status = 'Working';
-                timeLeft = WORK_DURATION;
             }
+
+
+            timeLeft = isWorkSession ? getWorkDuration() : getBreakDuration();
 
             document.getElementById('pomodoro_status').textContent = pomodoro_status;
             updateDisplay();
@@ -64,7 +74,7 @@ function stopTimer() {
 function resetTimer() {
     stopTimer(); // make sure to stop any ongoing timer
 
-    timeLeft = isWorkSession ? WORK_DURATION : BREAK_DURATION;
+    timeLeft = isWorkSession ? getWorkDuration() : getBreakDuration();
     updateDisplay();
 
     const status = isWorkSession ? 'Ready to Work' : 'Ready to Break';
@@ -90,6 +100,17 @@ function showNotification(message) {
     });
 }
 
+function showFadingAlert(message, duration = 2000) {
+    const alertEl = document.getElementById('custom-alert');
+    alertEl.textContent = message;
+    alertEl.classList.add('show');
+
+    setTimeout(() => {
+        alertEl.classList.remove('show');
+    }, duration);
+}
+
+
 // Initial display
 updateDisplay();
 
@@ -102,4 +123,24 @@ document.addEventListener('DOMContentLoaded', () => {
     startBtn.addEventListener('click', startTimer);
     stopBtn.addEventListener('click', stopTimer);
     resetBtn.addEventListener('click', resetTimer);
+
+
+    document.getElementById('apply_settings_button').addEventListener('click', () => {
+        const workInput = parseFloat(document.getElementById('work_duration_input').value);
+        const breakInput = parseFloat(document.getElementById('break_duration_input').value);
+
+        if (!isNaN(workInput) && !isNaN(breakInput) && workInput > 0 && breakInput > 0) {
+            workDurationMinutes = workInput;
+            breakDurationMinutes = breakInput;
+
+            showFadingAlert(`Settings updated: Work ${workDurationMinutes} min, Break ${breakDurationMinutes} min`);
+            playNotificationSound(); // Play sound to indicate settings change
+
+            resetTimer(); // Optional: apply immediately
+        } else {
+            alert("Please enter valid positive numbers.");
+        }
+    });
+
+
 });
