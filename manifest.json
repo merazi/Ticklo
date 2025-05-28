@@ -1,0 +1,22 @@
+{
+    "name": "Ticklo - Simple Pomodoro Timer",
+    "short_name": "Ticklo",
+    "description": "A simple Pomodoro timer app to boost your productivity.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2e86de",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "img/logo_light.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "img/logo_light.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

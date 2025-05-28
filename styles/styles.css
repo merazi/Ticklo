@@ -1,15 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
-
 
 body {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    min-height: 100%;
     margin: 0;
-    overflow: hidden;
 }
 
 #custom-alert {
@@ -53,7 +50,6 @@ body {
     padding: 1.5rem 0 1rem 0;
     background: transparent;
     z-index: 20;
-    font-family: 'Fira Code', 'Courier New', Courier, monospace;
     font-size: 3rem;
     font-weight: 700;
     pointer-events: none;
@@ -61,16 +57,13 @@ body {
 }
 
 #pomodoro_status {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     text-align: center;
-    margin-bottom: 1rem;
+    padding-top: 10rem;
 }
 
 #pomodoro_clock {
-    font-family: "Doto", sans-serif;
+    font-family: "Fira Code", monospace;
     font-size: clamp(2rem, 20vw, 10rem);
     text-align: center;
     flex: 1 0 auto;
@@ -81,18 +74,12 @@ body {
 }
 
 #pomodoro_buttons {
-    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    margin-bottom: 2rem;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background: transparent;
-    z-index: 10;
+    align-items: center;
     gap: 1rem;
 }
+
 
 #pomodoro_clock {
     user-select: none;
@@ -145,4 +132,44 @@ body {
 
 #notification button:hover {
     background-color: #81a1c1;
+}
+
+
+
+/* 📱 Responsive touch-friendly layout */
+@media (max-width: 600px) {
+    #pomodoro_welcome {
+        font-size: 2rem;
+        padding: 1rem;
+    }
+
+    #pomodoro_status {
+        font-size: 1.25rem;
+        padding-top: 6rem;
+    }
+
+    #pomodoro_clock {
+        font-size: 6rem;
+    }
+
+    #pomodoro_buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    #pomodoro_buttons button {
+        width: 50%;
+        font-size: 1.2rem;
+    }
+
+    input[type="number"] {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 1.1rem;
+        padding: 0.75rem 1rem;
+        touch-action: manipulation;
+    }
 }
